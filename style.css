@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#timer-container,
+.input-container {
+    /* 新しい入力要素のコンテナにもスタイルを適用 */
+    position: relative;
+    display: block;
+    /* ここを修正 */
+    margin: 20px auto;
+    /* 中央揃えと上下のマージン */
+    border: 2px dashed #ccc;
+    padding: 10px 20px;
+    width: fit-content;
+    /* 内容に合わせて幅を調整 */
+}
+
+#timer-container,
+.input-container {
+    border: none;
+}
+
+#timer,
+.resizable-input {
+    /* 新しい入力要素にもスタイルを適用 */
+    font-size: 48px;
+    font-weight: bold;
+    user-select: text;
+    outline: none;
+    min-width: 150px;
+    /* 入力要素の最小幅を設定 */
+    display: inline-block;
+    text-align: center;
+}
+
+.resizer {
+    /* リサイザーの共通スタイル */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    cursor: nwse-resize;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    opacity: 0.7;
+}
+
+.resizer {
+    display: none;
+}
+
+.menu.open~.input-container .resizer,
+.menu.open~#timer-container .resizer {
+    display: block;
+}
+
+.menu.open~#timer-container,
+.menu.open~.input-container {
+    border: 2px dashed #ccc;
+}
+
+
+.resizer:hover {
+    opacity: 1;
+    background-color: #ddd;
+}
+
+button {
+    margin: 20px;
+    font-size: 16px;
+    padding: 6px 16px;
+}
+
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    /* 3本線のためにテキストは不要 */
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    /* 線の太さ */
+    background-color: #333;
+    /* 通常モードでの線の色 */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 10px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 20px;
+}
+
+/* --- メニューが開いたときの「×」印へのアニメーション --- */
+.hamburger.open span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+}
+
+.hamburger.open span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    /* 少し幅を広げます */
+    width: 250px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    /* 影を柔らかく */
+    padding: 80px 0 20px;
+    /* 上の余白を増やしてアイコンと被らないように */
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+    /* ハンバーガーアイコンの背後に */
+    box-sizing: border-box;
+}
+
+.menu.open {
+    left: 0;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    margin: 0;
+    /* デフォルトのmarginをリセット */
+    padding: 15px 30px;
+    /* クリック領域を広げる */
+    background: transparent;
+    /* 背景を透明に */
+    border: none;
+    /* 枠線を削除 */
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    /* テキストを左揃えに */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.menu button:hover {
+    background-color: #f0f0f0;
+    /* ホバー時に背景色を付ける */
+}
+
+/*ダークモードの設定*/
+body.dark-mode {
+    background-color: #000;
+    color: #fff;
+}
+
+body.dark-mode .menu {
+    background-color: #222;
+    /* ダークモードのメニュー背景色 */
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .menu button {
+    color: #eee;
+    /* ダークモードの文字色 */
+}
+
+body.dark-mode .menu button:hover {
+    background-color: #333;
+    /* ダークモードのホバー色 */
+}
+
+body.dark-mode button {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #888;
+}
+
+body.dark-mode .hamburger span {
+    background-color: #fff;
+}
+
+body.dark-mode .resizer {
+    background-color: #666;
+    border-color: #999;
+}
+
+</style>
